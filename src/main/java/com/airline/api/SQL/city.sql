@@ -1,0 +1,10 @@
+INSERT INTO City (id, name, state, population) VALUES (1, 'New York', 'NY', 8500000);
+INSERT INTO City (id, name, state, population) VALUES (2, 'Los Angeles', 'CA', 4000000);
+INSERT INTO City (id, name, state, population) VALUES (3, 'Chicago', 'IL', 2700000);
+INSERT INTO City (id, name, state, population) VALUES (4, 'Houston', 'TX', 2300000);
+INSERT INTO City (id, name, state, population) VALUES (5, 'Phoenix', 'AZ', 1600000);
+INSERT INTO City (id, name, state, population) VALUES (6, 'Philadelphia', 'PA', 1600000);
+INSERT INTO City (id, name, state, population) VALUES (7, 'San Antonio', 'TX', 1500000);
+INSERT INTO City (id, name, state, population) VALUES (8, 'San Diego', 'CA', 1400000);
+INSERT INTO City (id, name, state, population) VALUES (9, 'Dallas', 'TX', 1300000);
+INSERT INTO City (id, name, state, population) VALUES (10, 'San Jose', 'CA', 1020000);
