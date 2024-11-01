@@ -1,5 +1,3 @@
-// This is the service class for the Aircraft entity. This class is used to interact with the database.
-
 package com.airline.api.services;
 
 import com.airline.api.models.Aircraft;
@@ -22,7 +20,7 @@ public class AircraftService {
         return aircraftRepository.findAll();
     }
 
-    public Aircraft getAircraftById(int id) {
+    public Aircraft getAircraftById(Long id) {
         return aircraftRepository.findById(id).orElse(null);
     }
 
@@ -34,7 +32,7 @@ public class AircraftService {
         return aircraftRepository.save(aircraft);
     }
 
-    public void deleteAircraft(int id) {
+    public void deleteAircraft(Long id) {
         aircraftRepository.deleteById(id);
     }
 }

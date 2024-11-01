@@ -1,5 +1,3 @@
-// this is the controller class for the passenger entity
-
 package com.airline.api.controllers;
 
 import java.util.List;
@@ -8,6 +6,7 @@ import com.airline.api.models.Passenger;
 import com.airline.api.services.PassengerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +25,14 @@ public class PassengerController {
         return passengerService.getPassengers();
     }
 
+    @PostMapping("/passengers")
+    public ResponseEntity<Void> addPassengers(@RequestBody List<Passenger> passengers) {
+        // Process the list of passengers
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/{id}")
-    public Passenger getPassenger(@PathVariable Integer id) {
+    public Passenger getPassenger(@PathVariable Long id) {
         return passengerService.getPassenger(id);
     }
 

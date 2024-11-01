@@ -1,76 +1,74 @@
+// src/main/java/com/airline/api/models/City.java
 package com.airline.api.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 public class City {
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String state;
-    private Integer population;
+    private int population;
 
-    @OneToMany
+    @OneToMany(mappedBy = "city")
+    private List<Passenger> passengers;
+
+    @OneToMany(mappedBy = "city") // One city can have many airports
+    @JsonManagedReference
     private List<Airport> airports;
 
     public City() {
-    }
-
-    public City(Integer id, String name, String state, Integer population) {
-        this.id = id;
-        this.name = name;
-        this.state = state;
-        this.population = population;
-    }
-
-    public City(Integer id, String name, String state, Integer population, List<Airport> airports) {
-        this.id = id;
-        this.name = name;
-        this.state = state;
-        this.population = population;
-        this.airports = airports;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public Integer getPopulation() {
-        return population;
     }
 
     public List<Airport> getAirports() {
         return airports;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setAirports(List<Airport> airports) {
+        this.airports = airports;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    public String getState() {
+        return state;
     }
 
     public void setState(String state) {
         this.state = state;
     }
 
-    public void setPopulation(Integer population) {
-        this.population = population;
+    public String getName() {
+        return name;
     }
 
-    public void setAirports(List<Airport> airports) {
-        this.airports = airports;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

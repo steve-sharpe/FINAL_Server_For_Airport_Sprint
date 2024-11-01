@@ -1,5 +1,3 @@
-// this is the service class for the passenger entity
-
 package com.airline.api.services;
 
 import com.airline.api.models.Passenger;
@@ -19,7 +17,7 @@ public class PassengerService {
         return passengerRepository.findAll();
     }
 
-    public Passenger getPassenger(Integer id) {
+    public Passenger getPassenger(Long id) {
         return passengerRepository.findById(id).orElse(null);
     }
 

@@ -1,11 +1,3 @@
-// This is the service class for the Airport entity. This class is used to interact with the database.
-// Cities can have many airports
-// Passengers can fly on many aircraft and live in one city
-// Aircraft can have many passengers and land/take off from many Airports
-// Airports can only be in one city
-// Airports can have many aircraft
-// Airports can have many passengers
-
 package com.airline.api.services;
 
 import com.airline.api.models.Airport;
@@ -28,7 +20,7 @@ public class AirportService {
         return airportRepository.findAll();
     }
 
-    public Airport getAirportById(int id) {
+    public Airport getAirportById(Long id) {
         return airportRepository.findById(id).orElse(null);
     }
 
@@ -40,7 +32,7 @@ public class AirportService {
         return airportRepository.save(airport);
     }
 
-    public void deleteAirport(int id) {
+    public void deleteAirport(Long id) {
         airportRepository.deleteById(id);
     }
 }

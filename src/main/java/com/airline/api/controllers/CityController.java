@@ -1,5 +1,3 @@
-// this is the controller class for the city entity
-
 package com.airline.api.controllers;
 
 import com.airline.api.models.City;
@@ -22,22 +20,37 @@ public class CityController {
     }
 
     @GetMapping("/{id}")
-    public City getCity(@PathVariable Integer id) {
+    public City getCity(@PathVariable Long id) {
         return cityService.getCityById(id);
     }
 
     @PostMapping
     public City addCity(@RequestBody City city) {
-        return cityService.createCity(city);
+        return cityService.addCity(city);
     }
 
     @PutMapping("/{id}")
-    public City updateCity(@PathVariable Integer id, @RequestBody City city) {
+    public City updateCity(@PathVariable Long id, @RequestBody City city) {
         return cityService.updateCity(id, city);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCity(@PathVariable Integer id) {
+    public void deleteCity(@PathVariable Long id) {
         cityService.deleteCity(id);
+    }
+
+    @GetMapping("/{id}/airports")
+    public City getCityWithAirports(@PathVariable Long id) {
+        return cityService.getCityWithAirports(id);
+    }
+
+    @GetMapping("/{id}/passengers")
+    public City getCityWithPassengers(@PathVariable Long id) {
+        return cityService.getCityWithPassengers(id);
+    }
+
+    @GetMapping("/{id}/airports-passengers")
+    public City getCityWithAirportsAndPassengers(@PathVariable Long id) {
+        return cityService.getCityWithAirportsAndPassengers(id);
     }
 }

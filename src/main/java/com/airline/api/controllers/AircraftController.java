@@ -1,6 +1,3 @@
-// This is the controller class for the Aircraft entity. It is responsible for handling HTTP requests and responses.
-// It is also responsible for handling the business logic of the application.
-
 package com.airline.api.controllers;
 
 import com.airline.api.models.Aircraft;
@@ -23,7 +20,7 @@ public class AircraftController {
     }
 
     @GetMapping("/{id}")
-    public Aircraft getAircraftById(@PathVariable int id) {
+    public Aircraft getAircraftById(@PathVariable Long id) {
         return aircraftRepository.findById(id).orElse(null);
     }
 
@@ -33,13 +30,13 @@ public class AircraftController {
     }
 
     @PutMapping("/{id}")
-    public Aircraft updateAircraft(@PathVariable int id, @RequestBody Aircraft aircraft) {
+    public Aircraft updateAircraft(@PathVariable Long id, @RequestBody Aircraft aircraft) {
         aircraft.setId(id);
         return aircraftRepository.save(aircraft);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAircraft(@PathVariable int id) {
+    public void deleteAircraft(@PathVariable Long id) {
         aircraftRepository.deleteById(id);
     }
 }

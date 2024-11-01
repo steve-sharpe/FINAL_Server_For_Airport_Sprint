@@ -1,15 +1,14 @@
-// This is the main class for the Spring Boot application. It is the entry point for the application.
-
 package com.airline.api;
 
+// RestServiceApplication.java
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableJpaRepositories
 public class RestServiceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(RestServiceApplication.class, args);
     }
-
 }

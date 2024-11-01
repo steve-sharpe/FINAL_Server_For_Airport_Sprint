@@ -1,78 +1,75 @@
+// src/main/java/com/airline/api/models/Aircraft.java
 package com.airline.api.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 public class Aircraft {
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String type;
     private String airlineName;
-    private Integer numberOfPassengers;
+    private int numberOfPassengers;
 
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "airport_id")
+    @JsonBackReference
+    private Airport airport;
+
+    @ManyToMany(mappedBy = "aircraft")
+    @JsonBackReference
     private List<Passenger> passengers;
 
-    @OneToMany
-    private List<Airport> airports;
+    // Getters and setters
 
-    public Aircraft() {
-    }
-
-    public Aircraft(Integer id, String type, String airlineName, Integer numberOfPassengers) {
-        this.id = id;
-        this.type = type;
-        this.airlineName = airlineName;
-        this.numberOfPassengers = numberOfPassengers;
-    }
-
-    public Aircraft(Integer id, String type, String airlineName, Integer numberOfPassengers,
-                    List<Passenger> passengers) {
-        this.id = id;
-        this.type = type;
-        this.airlineName = airlineName;
-        this.numberOfPassengers = numberOfPassengers;
-        this.passengers = passengers;
-    }
-
-    public Aircraft(Integer id, String type, String airlineName, Integer numberOfPassengers, List<Passenger> passengers,
-                    List<Airport> airports) {
-        this.id = id;
-        this.type = type;
-        this.airlineName = airlineName;
-        this.numberOfPassengers = numberOfPassengers;
-        this.passengers = passengers;
-        this.airports = airports;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getType() {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getAirlineName() {
         return airlineName;
     }
 
-    public Integer getNumberOfPassengers() {
+    public void setAirlineName(String airlineName) {
+        this.airlineName = airlineName;
+    }
+
+    public int getNumberOfPassengers() {
         return numberOfPassengers;
+    }
+
+    public void setNumberOfPassengers(int numberOfPassengers) {
+        this.numberOfPassengers = numberOfPassengers;
+    }
+
+    public Airport getAirport() {
+        return airport;
+    }
+
+    public void setAirport(Airport airport) {
+        this.airport = airport;
     }
 
     public List<Passenger> getPassengers() {
         return passengers;
     }
 
-    public List<Airport> getAirports() {
-        return airports;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
     }
 }
