@@ -13,6 +13,10 @@ public class CityService {
     @Autowired
     private CityRepository cityRepository;
 
+    public City getCityWithAirports(Long cityId) {
+        return cityRepository.findById(cityId).orElse(null);
+    }
+
     public List<City> getAllCities() {
         return cityRepository.findAll();
     }
@@ -40,15 +44,11 @@ public class CityService {
         cityRepository.deleteById(id);
     }
 
-    public City getCityWithAirports(Long cityId) {
-        return cityRepository.findCityWithAirports(cityId);
-    }
-
     public City getCityWithPassengers(Long cityId) {
         return cityRepository.findCityWithPassengers(cityId);
     }
 
-    public City getCityWithAirportsAndPassengers(Long cityId) {
-        return cityRepository.findCityWithAirportsAndPassengers(cityId);
-    }
+//    public City getCityWithAirportsAndPassengers(Long cityId) {
+//        return cityRepository.findCityWithAirportsAndPassengers(cityId);
+//    }
 }

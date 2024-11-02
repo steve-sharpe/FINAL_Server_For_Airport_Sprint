@@ -17,28 +17,32 @@ public class City {
     @OneToMany(mappedBy = "city")
     private List<Passenger> passengers;
 
-    @OneToMany(mappedBy = "city") // One city can have many airports
+//    @OneToMany(mappedBy = "city") // One city can have many airports
+//    @JsonManagedReference
+//    private List<Airport> airports;
+
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Airport> airports;
 
     public City() {
     }
 
-    public List<Airport> getAirports() {
-        return airports;
-    }
-
-    public void setAirports(List<Airport> airports) {
-        this.airports = airports;
-    }
-
-    public List<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(List<Passenger> passengers) {
-        this.passengers = passengers;
-    }
+//    public List<Airport> getAirports() {
+//        return airports;
+//    }
+//
+//    public void setAirports(List<Airport> airports) {
+//        this.airports = airports;
+//    }
+//
+//    public List<Passenger> getPassengers() {
+//        return passengers;
+//    }
+//
+//    public void setPassengers(List<Passenger> passengers) {
+//        this.passengers = passengers;
+//    }
 
     public int getPopulation() {
         return population;

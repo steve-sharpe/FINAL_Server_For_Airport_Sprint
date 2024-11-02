@@ -4,12 +4,11 @@ import java.util.List;
 
 import com.airline.api.models.Airport;
 import com.airline.api.services.AirportService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("airports")
+@RequestMapping("/airports")
 public class AirportController {
     @Autowired
     private AirportService airportService;
@@ -27,5 +26,11 @@ public class AirportController {
     @GetMapping("/{id}")
     public Airport getAirportById(@PathVariable Long id) {
         return airportService.getAirportById(id);
+    }
+
+    // Endpoint to get airports by city_id
+    @GetMapping("/byCity/{cityId}")
+    public List<Airport> getAirportsByCityId(@PathVariable Long cityId) {
+        return airportService.getAirportsByCityId(cityId);
     }
 }

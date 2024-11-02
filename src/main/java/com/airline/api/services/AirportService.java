@@ -20,6 +20,10 @@ public class AirportService {
         return airportRepository.findAll();
     }
 
+    public List<Airport> getAirportsByCityId(Long cityId) {
+        return airportRepository.findByCityId(cityId);
+    }
+
     public Airport getAirportById(Long id) {
         return airportRepository.findById(id).orElse(null);
     }

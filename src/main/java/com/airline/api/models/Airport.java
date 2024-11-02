@@ -13,7 +13,7 @@ public class Airport {
     private String name;
     private String code;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     @JsonBackReference
     private City city;

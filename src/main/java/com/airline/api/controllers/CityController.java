@@ -15,9 +15,7 @@ public class CityController {
     private CityService cityService;
 
     @GetMapping
-    public List<City> getCities() {
-        return cityService.getAllCities();
-    }
+    public List<City> getAllCities() {return cityService.getAllCities();}
 
     @GetMapping("/{id}")
     public City getCity(@PathVariable Long id) {
@@ -49,8 +47,9 @@ public class CityController {
         return cityService.getCityWithPassengers(id);
     }
 
-    @GetMapping("/{id}/airports-passengers")
-    public City getCityWithAirportsAndPassengers(@PathVariable Long id) {
-        return cityService.getCityWithAirportsAndPassengers(id);
-    }
+//    @GetMapping("/{id}/airports-passengers")
+//    public City getCityWithAirportsAndPassengers(@PathVariable Long id) {
+//        return cityService.getCityWithAirportsAndPassengers(id);
+//    }
+//
 }
