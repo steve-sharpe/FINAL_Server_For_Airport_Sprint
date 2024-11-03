@@ -1,11 +1,12 @@
-// src/main/java/com/airline/api/models/City.java
 package com.airline.api.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,31 +15,14 @@ public class City {
     private String state;
     private int population;
 
-    @OneToMany(mappedBy = "city")
-    private List<Passenger> passengers;
-
-    @OneToMany(mappedBy = "city") // One city can have many airports
-    @JsonManagedReference
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private List<Airport> airports;
 
     public City() {
     }
 
-    public List<Airport> getAirports() {
-        return airports;
-    }
-
-    public void setAirports(List<Airport> airports) {
-        this.airports = airports;
-    }
-
-    public List<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(List<Passenger> passengers) {
-        this.passengers = passengers;
-    }
+    // Getters and setters
 
     public int getPopulation() {
         return population;
@@ -70,5 +54,13 @@ public class City {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Airport> getAirports() {
+        return airports;
+    }
+
+    public void setAirports(List<Airport> airports) {
+        this.airports = airports;
     }
 }

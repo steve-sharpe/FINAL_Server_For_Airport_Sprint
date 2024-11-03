@@ -21,11 +21,11 @@ public class PassengerController {
     private PassengerService passengerService;
 
     @GetMapping
-    public List<Passenger> getPassengers() {
-        return passengerService.getPassengers();
+    public List<Passenger> getAllPassengers() {
+        return passengerService.getAllPassengers();
     }
 
-    @PostMapping("/passengers")
+    @PostMapping("/bulk")
     public ResponseEntity<Void> addPassengers(@RequestBody List<Passenger> passengers) {
         // Process the list of passengers
         return ResponseEntity.ok().build();

@@ -1,7 +1,6 @@
-// src/main/java/com/airline/api/models/Aircraft.java
 package com.airline.api.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -16,11 +15,10 @@ public class Aircraft {
 
     @ManyToOne
     @JoinColumn(name = "airport_id")
-    @JsonBackReference
     private Airport airport;
 
-    @ManyToMany(mappedBy = "aircraft")
-    @JsonBackReference
+    @OneToMany(mappedBy = "aircraft", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Passenger> passengers;
 
     // Getters and setters

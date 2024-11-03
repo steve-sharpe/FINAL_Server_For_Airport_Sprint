@@ -1,7 +1,6 @@
 package com.airline.api.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -13,14 +12,16 @@ public class Airport {
     private String name;
     private String code;
 
-    @ManyToOne
-    @JoinColumn(name = "city_id")
-    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private City city;
 
-    @OneToMany(mappedBy = "airport")
-    @JsonManagedReference
-    private List<Passenger> passengers;
+    @OneToMany(mappedBy = "airport", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("airport")
+    private List<Aircraft> aircraft;
+
+    // Getters and setters
 
     public Long getId() {
         return id;
@@ -54,11 +55,11 @@ public class Airport {
         this.city = city;
     }
 
-    public List<Passenger> getPassengers() {
-        return passengers;
+    public List<Aircraft> getAircraft() {
+        return aircraft;
     }
 
-    public void setPassengers(List<Passenger> passengers) {
-        this.passengers = passengers;
+    public void setAircraft(List<Aircraft> aircraft) {
+        this.aircraft = aircraft;
     }
 }

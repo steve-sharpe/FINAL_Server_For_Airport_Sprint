@@ -1,5 +1,6 @@
 package com.airline.api.controllers;
 
+import com.airline.api.models.Airport;
 import com.airline.api.models.City;
 import com.airline.api.services.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,18 +40,13 @@ public class CityController {
         cityService.deleteCity(id);
     }
 
+    @GetMapping("/airport/{airportId}")
+    public City getCityByAirportId(@PathVariable Long airportId) {
+        return cityService.getCityByAirportId(airportId);
+    }
+
     @GetMapping("/{id}/airports")
-    public City getCityWithAirports(@PathVariable Long id) {
-        return cityService.getCityWithAirports(id);
-    }
-
-    @GetMapping("/{id}/passengers")
-    public City getCityWithPassengers(@PathVariable Long id) {
-        return cityService.getCityWithPassengers(id);
-    }
-
-    @GetMapping("/{id}/airports-passengers")
-    public City getCityWithAirportsAndPassengers(@PathVariable Long id) {
-        return cityService.getCityWithAirportsAndPassengers(id);
+    public List<Airport> getAirportsByCityId(@PathVariable Long id) {
+        return cityService.getAirportsByCityId(id);
     }
 }

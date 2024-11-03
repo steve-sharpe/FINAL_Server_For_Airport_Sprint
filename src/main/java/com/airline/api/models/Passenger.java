@@ -1,8 +1,8 @@
-// src/main/java/com/airline/api/models/Passenger.java
 package com.airline.api.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -14,11 +14,6 @@ public class Passenger {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "city_id", nullable = false)
-    @JsonBackReference
-    private City city;
 
     @ManyToMany
     @JoinTable(
@@ -66,14 +61,6 @@ public class Passenger {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
     }
 
     public List<Aircraft> getAircraft() {
